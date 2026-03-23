@@ -5,103 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Amira</title>
     <style>
-        :root { 
-            --pink-light: #ffc1d6; 
-            --pink-dark: #ff85a2; 
-            --bg-color: #0b0b0b; 
-        }
-        
-        body { 
-            margin: 0; 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background-color: var(--bg-color); 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            overflow: hidden; 
-            color: white; 
-        }
-
-        .container { 
-            text-align: center; 
-            background: rgba(255, 255, 255, 0.07); 
-            backdrop-filter: blur(12px); 
-            padding: 35px; 
-            border-radius: 30px; 
-            box-shadow: 0 15px 40px rgba(255, 133, 162, 0.3); 
-            width: 85%; 
-            max-width: 400px; 
-            position: relative; 
-            z-index: 10; 
-            border: 1px solid rgba(255, 133, 162, 0.4);
-        }
-
+        :root { --pink-light: #ffc1d6; --pink-dark: #ff85a2; --bg-color: #0b0b0b; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; color: white; }
+        .container { text-align: center; background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px); padding: 35px; border-radius: 30px; box-shadow: 0 15px 40px rgba(255, 133, 162, 0.3); width: 85%; max-width: 400px; position: relative; z-index: 10; border: 1px solid rgba(255, 133, 162, 0.4); }
         .page { display: none; animation: fadeIn 0.4s ease-out; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
         h2 { color: var(--pink-light); margin-bottom: 25px; font-size: 24px; text-shadow: 2px 2px 10px rgba(255,133,162,0.6); }
+        input[type="password"] { padding: 15px; border: 2px solid var(--pink-dark); border-radius: 15px; text-align: center; font-size: 22px; width: 80%; outline: none; background: rgba(0,0,0,0.6); color: white; margin-bottom: 20px; }
+        
+        button { background-color: var(--pink-dark); color: white; border: none; padding: 14px 28px; margin: 10px; border-radius: 50px; cursor: pointer; font-size: 17px; font-weight: bold; transition: 0.2s; animation: fastShake 1.2s infinite ease-in-out; box-shadow: 0 5px 15px rgba(255, 133, 162, 0.5); }
+        @keyframes fastShake { 0%, 100% { transform: translateY(0); } 25% { transform: translateY(-4px) rotate(2deg); } 75% { transform: translateY(4px) rotate(-2deg); } }
 
-        input[type="password"] { 
-            padding: 15px; 
-            border: 2px solid var(--pink-dark); 
-            border-radius: 15px; 
-            text-align: center; 
-            font-size: 22px; 
-            width: 80%; 
-            outline: none; 
-            background: rgba(0,0,0,0.6);
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        button { 
-            background-color: var(--pink-dark); 
-            color: white;
-            border: none; 
-            padding: 14px 28px; 
-            margin: 10px; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            font-size: 17px; 
-            font-weight: bold; 
-            transition: 0.2s; 
-            animation: fastShake 1.2s infinite ease-in-out; 
-            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.5);
-        }
-
-        button:active { transform: scale(0.8); background-color: #ff4d79; }
-
-        @keyframes fastShake { 
-            0%, 100% { transform: translateY(0) rotate(0); } 
-            20% { transform: translateY(-4px) rotate(3deg); } 
-            60% { transform: translateY(4px) rotate(-3deg); } 
-        }
-
-        /* زرار "لأ" المجنون - طيران حر في الشاشة */
+        /* حركة زرار لأ - بيتحرك لوحده بس ثابت في مكانه تقدر تدوسه */
         #noBtn { 
-            position: fixed; 
-            z-index: 9999; 
-            transition: 0.1s ease-out;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: moveAround 3s infinite alternate ease-in-out !important; 
+        }
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(15px, -10px); }
+            100% { transform: translate(-15px, 10px); }
         }
         
         .floating { position: fixed; bottom: -100px; animation: floatUp 6s linear forwards; pointer-events: none; z-index: 1; }
         @keyframes floatUp { to { transform: translateY(-120vh) rotate(360deg); } }
-
-        .poem-box, .typewriter-text { 
-            font-size: 17px; 
-            line-height: 1.8; 
-            color: #fff; 
-            text-align: right; 
-            white-space: pre-wrap;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            border-right: 3px solid var(--pink-dark);
-        }
-
+        .poem-box, .typewriter-text { font-size: 17px; line-height: 1.8; color: #fff; text-align: right; white-space: pre-wrap; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; border-right: 3px solid var(--pink-dark); }
         #poemFinalBtn { display: none; }
     </style>
 </head>
@@ -142,13 +70,13 @@
         <div class="container" style="min-height: 250px;">
             <h2>يعني بتحبيني ولا لأ 🥺</h2>
             <button onclick="nextPage(5)">بحبك ي ميدو 😭🩷</button>
-            <button id="noBtn" onmouseover="teleportBtn()" onclick="betrayal()">لأ</button>
+            <button id="noBtn" onclick="betrayal()">لأ</button>
         </div>
     </div>
 
     <div id="page5" class="page">
         <div class="container">
-            <h2 style="font-size: 26px;">🎉💞 <br>𝑯𝒂𝒑𝒑𝒚 𝒃𝒊𝒓𝒕𝒉𝒅𝒂𝒚 𝑨𝒎𝒊𝒓𝒂</h2>
+            <h2 style="font-size: 26px;">🎉💞🥹 <br>𝑯𝒂𝒑𝒑𝒚 𝒃𝒊𝒓𝒕𝒉𝒅𝒂𝒚 𝑨𝒎𝒊𝒓𝒂</h2>
             <div id="poemText" class="poem-box"></div>
             <button id="poemFinalBtn" onclick="nextPage(6)">وانت طيب ي روح قلبي وان شاء الله نفضل سوا طول عمرنا 🤭💗</button>
         </div>
@@ -169,18 +97,8 @@
         }
 
         function checkPass() {
-            // الباسورد الجديد: 862009
             if(document.getElementById('passInput').value === "862009") nextPage(1);
             else alert("الرقم السري غلط ي أميرة! ركزي 🧐");
-        }
-
-        function teleportBtn() {
-            const btn = document.getElementById('noBtn');
-            // حركة حرة في كل مساحة المتصفح
-            const maxX = window.innerWidth - btn.offsetWidth;
-            const maxY = window.innerHeight - btn.offsetHeight;
-            btn.style.left = Math.random() * maxX + 'px';
-            btn.style.top = Math.random() * maxY + 'px';
         }
 
         function betrayal() {
@@ -201,20 +119,21 @@
         }
 
         function startPoem() {
-            const text = "ڪـل ســنــة وإنـتـي طـيـبـة ي أحــلـى مـــن يــتـم 16 ســنــة ودا اولــــ عــيـد مــيـلاد لــيـكـي واحــنـا مــع بــعـض وتــانـي عــيـد مــيـلاد لــيـكـي مـــن مــعـرفـتـنا لبــعـض. 🥹🙈💜\n\nبــتـمـنـالـك مـــن ڪـل قــلـبـي إنــ الــسـنـة دي تــكـون ســنــة جـديـدة وســعـيـدة عـلـيـكـي وتــكـونـي مــوفـقـة فــيـه‍ا دايــمـا يا رب.. انــا عـارف إنــ الـســنــة دي هـتـكـون غــيـر أي ســنــة فـاتـت لإنـنـا هـنـكـون فـي ثـانـويـة وانــا عـارفــ ومُـتـيـقـن انــڪ قــدهـا وقـدود وربـنـا و انــك إن شـاء الله هـتـفـرحـيـنـي انــا قـبـل نــفـسـك وهــتـحـقـقـي حــلـمـنـا إن شـاء الله 🥹💞\n\nو آخــر كــلامـي أن اكــون مُـخـلـص لـدعـواتـي لــكـي بـالـسـداد والـتـوفـيـق والـسـعـي الـدائـم واسـتـذاقـة لـذة الـوصـول فـي ڪـل مـا نـنتـمـنـاه اللهم آمـيـن 🤲🏻🤍";
+            const text = "ڪـل ســنــة وإنـتـي طـيـبـة ي أحــلـى مـــن يــتـم 16 ســنــة ودا اولــــ عــيـد مــيـلاد لــيـكـي واحــنـا مــع بــعـض وتــانـي عــيـلاد لــيـكـي مـــن مــعـرفـتـنا لبــعـض. 🥹🙈💜\n\nبــتـمـنـالـك مـــن ڪـل قــلـبـي إنــ الــسـنـة دي تــكـون ســنــة جـديـدة وســعـيـدة عـلـيـكـي وتــكـونـي مــوفـقـة فــيـه‍ا دايــمـا يا رب.. انــا عـارف إنــ الـســنــة دي هـتـكـون غــيـر أي ســنــة فـاتـت لإنـنـا هـنـكـون فـي ثـانـويـة وانــا عـارفــ ومُـتـيـقـن انــڪ قــدهـا وقـدود وربـنـا و انــك إن شـاء الله هـتـفـرحـيـنـي انــا قـبـل نــفـسـك وهــتـحـقـقـي حــلـمـنـا إن شـاء الله 🥹💞\n\nو آخــر كــلامـي أن اكــون مُـخـلـص لـدعـواتـي لــكـي بـالـسـداد والـتـوفـيـق والـسـعـي الـدائـم واسـتـذاقـة لـذة الـوصـول فـي ڪـل مـا نـنتـمـنـاه اللهم آمـيـن 🤲🏻🤍";
             typeWrite('poemText', text, 45, () => {
                 document.getElementById('poemFinalBtn').style.display = 'inline-block';
             });
         }
 
         function startFinalText() {
-            const text = "كل حب منحته لكي هو حقكي للابد لن اطلبه يوما ولن اندم عليه ولن اعتبره هباءا فالحب لم يكن يوما صفقة بل كان هدية قدمتها لكي اتمنى انه في ساعات صمت حين يثقل العالم على روحكي تتذكري ان هناك من نظر إليك يوما وراي شيئا يستحق التمسك به وان شعرتي يوما بدفئ لا تعرفي مصدره خفيف عابر كذكرى فلعل ذلك أنا في مكان ما من الزمن ما زلت أفي بوعدي لكي..رحبك يا أميرة 🥹♥️✨️";
+            const text = "كل حب منحته لكي هو حقكي للابد لن اطلبه يوما ولن اندم عليه ولن اعتبره هباءا فالحب لم يكن يوما صفقة بل كان هدية قدمتها لكي اتمنى انه في ساعات صمت حين يثقل العالم على روحكي تتذكري ان هناك من نظر إليك يوما وراي شيئا يستحق التمسك به وان شعرتي يوما بدفئ لا تعرفي مصدره خفيف عابر كذكرى فلعل ذلك أنا في مكان ما من الزمن ما زلت أفي بوعدي لكي..بحبك يا أميرة 🥹♥️✨️";
             typeWrite('finalText', text, 65);
         }
 
         function typeWrite(id, text, speed, callback) {
             let i = 0;
             const el = document.getElementById(id);
+            el.innerHTML = "";
             function step() {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
